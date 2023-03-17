@@ -11,6 +11,7 @@ import Acer, { acerLoaderData } from './pages/Acer'
 import Apple, { appleLoaderData } from './pages/Apple'
 import Asus, { asusLoaderData } from './pages/Asus'
 import Signup from './pages/Signup'
+import Cart from './components/Cart'
 
 export default function App() {
   const router = createBrowserRouter(createRoutesFromElements([
@@ -18,6 +19,7 @@ export default function App() {
       <Route path='/' element={<Beranda />}>
         <Route index element={<Home />} />
         <Route path='home' element={<ProtectHome />} />
+        <Route path='cart' element={<Cart />} />
         <Route path='shop' element={<Shop />} loader={acerLoader}>
           <Route path='detail' element={<Detail />} />
         </Route>

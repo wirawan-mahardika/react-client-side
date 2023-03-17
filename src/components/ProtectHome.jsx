@@ -22,7 +22,7 @@ export default function ProtectHome() {
       <p className="font-bold text-3xl mb-5">Welcome {user && user.username}</p>
       <p>Glad to Have you back</p>
       <p>We have some awesome gadget made by famous brand</p>
-      <p>Check it by click the Shop option right at the left</p>
+      <p>Check our shop to know more</p>
     </div>
   )
 }

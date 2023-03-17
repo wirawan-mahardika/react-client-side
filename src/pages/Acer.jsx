@@ -20,23 +20,24 @@ export default function Acer() {
             navigate('/login')
         }
     }, [isError, navigate])
+
+    const addCart = (item) => {
+        navigate('/acer/detail', {state: item})
+    }
     return (
         <>
             <div className="grid grid-cols-3 gap-3 gap-y-2">
                 {
-                    data ? data.map(item => {
+                    data && data.map(item => {
                         return (
                             <div key={item.id} className="text-center flex flex-col">
                                 <img src={item.src} alt={item.id} />
                                 <p className='font-bold text-lg'>{item.name}</p>
                                 <p className='text-red-500'>{item.price}</p>
-                                <button className='px-4 py-0.5 bg-sky-500 rounded w-fit font-semibold mx-auto'><Link to={'/acer/detail'} state={{
-                                    name: 'Asus Rog ryzen 9 7500H',
-                                    price: 54000000
-                                }}>Add to Cart</Link></button>
+                                <button onClick={() => addCart(item)} className='px-4 py-0.5 bg-sky-500 rounded w-fit font-semibold mx-auto'>Add to Cart</button>
                             </div>
                         )
-                    }) : ''
+                    }) 
                 }
             </div>
             <Outlet />
