@@ -21,7 +21,7 @@ export default function Navbar() {
         {user ? (
           <>
             <li className="text-neutral-900 font-medium hover:text-slate-200">
-              <NavLink to={"/home"}>Profile</NavLink>
+              <NavLink to={"/profile"}>Profile</NavLink>
             </li>
             <li className="text-neutral-900 font-medium hover:text-slate-200">
               <NavLink to={"/cart"}>Cart</NavLink>

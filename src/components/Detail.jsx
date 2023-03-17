@@ -13,7 +13,6 @@ export default function Detail() {
 
   const addCart = (item) => {
     const checkItem = cartItems.find((i) => i.name === item.name);
-    console.log(checkItem);
     if (!checkItem) {
       dispatch(
         addToCart({
@@ -21,6 +20,7 @@ export default function Detail() {
           src: item.src,
           price: item.price,
           jumlah: jumlah,
+          stock: item.stock,
         })
       );
     } else {
@@ -30,6 +30,7 @@ export default function Detail() {
           src: checkItem.src,
           price: checkItem.price,
           jumlah: jumlah,
+          stock: checkItem.stock,
         })
       );
     }
@@ -61,14 +62,22 @@ export default function Detail() {
               <div className="flex gap-x-3">
                 <button
                   className="rounded px-3 py-0.5 bg-red-500 w-fit font-medium"
-                  onClick={() => setJumlah(jumlah - 1)}
+                  onClick={() => {
+                    if (jumlah > 0) {
+                      setJumlah(jumlah - 1);
+                    }
+                  }}
                 >
                   -
                 </button>
                 <p>{jumlah}</p>
                 <button
                   className="rounded px-3 py-0.5 bg-green-500 w-fit font-medium"
-                  onClick={() => setJumlah(jumlah + 1)}
+                  onClick={() => {
+                    if (jumlah < state.stock) {
+                      setJumlah(jumlah + 1);
+                    }
+                  }}
                 >
                   +
                 </button>

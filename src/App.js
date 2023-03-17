@@ -12,32 +12,37 @@ import Apple, { appleLoaderData } from './pages/Apple'
 import Asus, { asusLoaderData } from './pages/Asus'
 import Signup from './pages/Signup'
 import Cart from './components/Cart'
+import Profile from "./pages/Profile";
 
 export default function App() {
-  const router = createBrowserRouter(createRoutesFromElements([
-    <Route path='/' element={<Dashboard />} errorElement={<Errorpage />}>
-      <Route path='/' element={<Beranda />}>
-        <Route index element={<Home />} />
-        <Route path='home' element={<ProtectHome />} />
-        <Route path='cart' element={<Cart />} />
-        <Route path='shop' element={<Shop />} loader={acerLoader}>
-          <Route path='detail' element={<Detail />} />
+  const router = createBrowserRouter(
+    createRoutesFromElements([
+      <Route path="/" element={<Dashboard />} errorElement={<Errorpage />}>
+        <Route path="/" element={<Beranda />}>
+          <Route index element={<Home />} />
+          <Route path="home" element={<ProtectHome />} />
+          <Route path="profile" element={<Profile />} />
+          <Route path="cart" element={<Cart />}>
+            <Route path="detail" element={<Detail />} />
+          </Route>
+          <Route path="shop" element={<Shop />} loader={acerLoader}>
+            <Route path="detail" element={<Detail />} />
+          </Route>
+          <Route path="acer" element={<Acer />} loader={acerLoaderData}>
+            <Route path="detail" element={<Detail />} />
+          </Route>
+          <Route path="asus" element={<Asus />} loader={asusLoaderData}>
+            <Route path="detail" element={<Detail />} />
+          </Route>
+          <Route path="apple" element={<Apple />} loader={appleLoaderData}>
+            <Route path="detail" element={<Detail />} />
+          </Route>
         </Route>
-        <Route path='acer' element={<Acer />} loader={acerLoaderData}>
-          <Route path='detail' element={<Detail />} />
-        </Route>
-        <Route path='asus' element={<Asus />} loader={asusLoaderData}>
-          <Route path='detail' element={<Detail />} />
-        </Route>
-        <Route path='apple' element={<Apple />} loader={appleLoaderData}>
-          <Route path='detail' element={<Detail />} />
-        </Route>
-      </Route>
-      <Route path='login' element={<Login />} />
-      <Route path='signup' element={<Signup />} />
-    </Route>
-    
-  ]))
+        <Route path="login" element={<Login />} />
+        <Route path="signup" element={<Signup />} />
+      </Route>,
+    ])
+  );
   return (
     <RouterProvider router={router} />
   )
