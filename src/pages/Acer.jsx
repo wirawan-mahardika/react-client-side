@@ -8,8 +8,7 @@ export default function Acer() {
     const {isError} = useSelector(state => state.auth)
     const dispatch = useDispatch()
     const navigate = useNavigate()
-    const actionData = useLoaderData()
-    const [data, setData] = useState(actionData)
+    const data = useLoaderData();
     
     useEffect(() => {
         dispatch(getme())
