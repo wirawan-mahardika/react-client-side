@@ -13,11 +13,14 @@ import Asus, { asusLoaderData } from './pages/Asus'
 import Signup from './pages/Signup'
 import Cart from './components/Cart'
 import Profile from "./pages/Profile";
+import Test from "./pages/Test";
+import Laptop, { laptopLoader } from "./pages/Laptop";
 
 export default function App() {
   const router = createBrowserRouter(
     createRoutesFromElements([
-      <Route path="/" element={<Dashboard />} errorElement={<Errorpage />}>
+      // <Route path="/" element={<Dashboard />} errorElement={<Errorpage />}>
+      <Route path="/" element={<Dashboard />}>
         <Route path="/" element={<Beranda />}>
           <Route index element={<Home />} />
           <Route path="home" element={<ProtectHome />} />
@@ -26,6 +29,9 @@ export default function App() {
             <Route path="detail" element={<Detail />} />
           </Route>
           <Route path="shop" element={<Shop />} loader={acerLoader}>
+            <Route path="detail" element={<Detail />} />
+          </Route>
+          <Route path="laptop" element={<Laptop />} loader={laptopLoader}>
             <Route path="detail" element={<Detail />} />
           </Route>
           <Route path="acer" element={<Acer />} loader={acerLoaderData}>
@@ -40,10 +46,9 @@ export default function App() {
         </Route>
         <Route path="login" element={<Login />} />
         <Route path="signup" element={<Signup />} />
+        <Route path="test" element={<Test />} />
       </Route>,
     ])
   );
-  return (
-    <RouterProvider router={router} />
-  )
+  return <RouterProvider router={router} />;
 }

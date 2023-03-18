@@ -47,7 +47,7 @@ export default function Navbar() {
           <NavLink to={"/shop"}>Handphone</NavLink>
         </li>
         <li className="text-neutral-900 font-medium hover:text-slate-200">
-          <NavLink to={"/shop"}>Laptop</NavLink>
+          <NavLink to={"/laptop"}>Laptop</NavLink>
         </li>
       </ul>
 
