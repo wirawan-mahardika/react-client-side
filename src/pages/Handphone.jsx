@@ -4,7 +4,7 @@ import { Outlet, useLoaderData, useNavigate } from "react-router-dom";
 import { getme } from "../actions/authSlice";
 import { axiosJwtGet } from "../axiosJwt/axios";
 
-export default function Laptop() {
+export default function Handphone() {
   const { isError } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -21,7 +21,7 @@ export default function Laptop() {
   }, [isError, navigate]);
 
   const addCart = (item) => {
-    navigate("/laptop/detail", { state: item });
+    navigate("/handphone/detail", { state: item });
   };
   return (
     <>
@@ -48,7 +48,7 @@ export default function Laptop() {
   );
 }
 
-export const laptopLoader = () => {
-  const data = axiosJwtGet("laptop");
+export const handphoneLoader = () => {
+  const data = axiosJwtGet("handphone");
   return data;
 };

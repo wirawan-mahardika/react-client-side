@@ -44,7 +44,7 @@ export default function Navbar() {
           <NavLink to={"/shop"}>Shop</NavLink>
         </li>
         <li className="text-neutral-900 font-medium hover:text-slate-200">
-          <NavLink to={"/shop"}>Handphone</NavLink>
+          <NavLink to={"/handphone"}>Handphone</NavLink>
         </li>
         <li className="text-neutral-900 font-medium hover:text-slate-200">
           <NavLink to={"/laptop"}>Laptop</NavLink>
@@ -69,10 +69,10 @@ export default function Navbar() {
           <h2 className="font-bold text-lg text-slate-50 mt-5">Setting</h2>
           <ul className="pl-6 flex flex-col gap-y-1 mt-2">
             <li className="text-neutral-900 font-medium hover:text-slate-200">
-              <NavLink to={"/acer"}>User</NavLink>
+              <NavLink to={"/users"}>User</NavLink>
             </li>
             <li className="text-neutral-900 font-medium hover:text-slate-200">
-              <NavLink to={"/acer"}>Barang</NavLink>
+              <NavLink to={"/barang"}>Barang</NavLink>
             </li>
           </ul>
         </>

@@ -14,15 +14,15 @@ export default function FormLogin() {
     
 
     useEffect(() => {
-        if(user || isSuccess){
-            dispatch(getme())
-            if(!localStorage.getItem('token')){
-                localStorage.setItem('token', token)
-            }
-            navigate('/home')
+      if (user || isSuccess) {
+        dispatch(getme());
+        if (!localStorage.getItem("token")) {
+          localStorage.setItem("token", token);
         }
-        dispatch(reset())
-    }, [user,  isSuccess])
+        navigate("/home");
+      }
+      dispatch(reset());
+    }, [user, isSuccess, navigate, dispatch, token]);
     
     const submit = (e) => {
         e.preventDefault()
