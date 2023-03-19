@@ -2,19 +2,22 @@ import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } 
 import Dashboard from './pages/Dashboard'
 import Beranda from './pages/Beranda'
 import Login from './pages/Login'
-import Shop, { acerLoader } from './components/Shop'
-import Detail from './components/Detail'
-import Home from './components/Home'
-import ProtectHome from './components/ProtectHome'
-import Errorpage from './components/Errorpage'
-import Acer, { acerLoaderData } from './pages/Acer'
-import Apple, { appleLoaderData } from './pages/Apple'
-import Asus, { asusLoaderData } from './pages/Asus'
-import Signup from './pages/Signup'
-import Cart from './components/Cart'
+import Shop, { shopSearchAction } from "./components/Shop";
+import Detail from "./components/Detail";
+import Home from "./components/Home";
+import ProtectHome from "./components/ProtectHome";
+// import Errorpage from "./components/Errorpage";
+import Acer, { acerLoaderData } from "./pages/Acer";
+import Apple, { appleLoaderData } from "./pages/Apple";
+import Asus, { asusLoaderData } from "./pages/Asus";
+import Signup from "./pages/Signup";
+import Cart from "./components/Cart";
 import Profile from "./pages/Profile";
 import Test from "./pages/Test";
 import Laptop, { laptopLoader } from "./pages/Laptop";
+import Users from "./pages/Users";
+import Barang, { barangActionData } from "./pages/Barang";
+import Handphone, { handphoneLoader } from "./pages/Handphone";
 
 export default function App() {
   const router = createBrowserRouter(
@@ -28,10 +31,17 @@ export default function App() {
           <Route path="cart" element={<Cart />}>
             <Route path="detail" element={<Detail />} />
           </Route>
-          <Route path="shop" element={<Shop />} loader={acerLoader}>
+          <Route path="shop" element={<Shop />} action={shopSearchAction}>
             <Route path="detail" element={<Detail />} />
           </Route>
           <Route path="laptop" element={<Laptop />} loader={laptopLoader}>
+            <Route path="detail" element={<Detail />} />
+          </Route>
+          <Route
+            path="handphone"
+            element={<Handphone />}
+            loader={handphoneLoader}
+          >
             <Route path="detail" element={<Detail />} />
           </Route>
           <Route path="acer" element={<Acer />} loader={acerLoaderData}>
@@ -43,6 +53,8 @@ export default function App() {
           <Route path="apple" element={<Apple />} loader={appleLoaderData}>
             <Route path="detail" element={<Detail />} />
           </Route>
+          <Route path="users" element={<Users />} />
+          <Route path="barang" element={<Barang />} action={barangActionData} />
         </Route>
         <Route path="login" element={<Login />} />
         <Route path="signup" element={<Signup />} />
