@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { addToCart, filterAndAdd } from "../actions/cartSlice";
+import { motion } from "framer-motion";
 
 export default function Detail() {
   const { state } = useLocation();
@@ -39,7 +40,16 @@ export default function Detail() {
   return (
     <>
       <div className="fixed bg-black opacity-60 top-0 left-0 bottom-0 right-0 flex justify-center items-center z-10"></div>
-      <div className="bg-gray-200 w-1/3 flex flex-col h-screen left-0 p-6 opacity-100 fixed z-20 top-0 overflow-y-auto">
+      <motion.div
+        initial={{ x: "-100vw" }}
+        animate={{ x: 0 }}
+        transition={{
+          type: "spring",
+          mass: 0.4,
+          duration: 0.1,
+        }}
+        className="bg-gray-200 w-1/3 flex flex-col h-screen left-0 p-6 opacity-100 fixed z-20 top-0 overflow-y-auto"
+      >
         <button
           onClick={() => navigate(-1)}
           className="absolute right-0 mr-2 hover:text-red-500 top-0 font-bold text-lg p-1"
@@ -97,7 +107,7 @@ export default function Detail() {
             </div>
           </div>
         </div>
-      </div>
+      </motion.div>
     </>
   );
 }

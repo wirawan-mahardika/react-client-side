@@ -72,7 +72,7 @@ export default function Navbar() {
               <NavLink to={"/users"}>User</NavLink>
             </li>
             <li className="text-neutral-900 font-medium hover:text-slate-200">
-              <NavLink to={"/barang"}>Barang</NavLink>
+              <NavLink to={"/barang-menu"}>Barang</NavLink>
             </li>
           </ul>
         </>

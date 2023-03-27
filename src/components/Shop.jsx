@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { getme } from "../actions/authSlice";
 import { axiosJwtPost } from "../axiosJwt/axios";
+import { motion } from "framer-motion";
 import { addedToCart } from "../actions/shopSlice";
 
 export default function Shop() {
@@ -52,11 +53,20 @@ export default function Shop() {
           </button>
         </Form>
       </div>
-      <div className="grid grid-cols-3 gap-3 gap-y-2">
+      <motion.div
+        variants={containerVariants}
+        initial="start"
+        animate="end"
+        className="grid grid-cols-3 gap-3 gap-y-2"
+      >
         {data
           ? data.map((item) => {
               return (
-                <div key={item.id} className="text-center flex flex-col">
+                <motion.div
+                  variants={childrenVariants}
+                  key={item.id}
+                  className="text-center flex flex-col"
+                >
                   <img src={item.src} alt={item.id} />
                   <p className="font-bold text-lg">{item.name}</p>
                   <p className="text-red-500">{item.price}</p>
@@ -68,12 +78,16 @@ export default function Shop() {
                   >
                     Add to Cart
                   </button>
-                </div>
+                </motion.div>
               );
             })
           : shop.map((item) => {
               return (
-                <div key={item.id} className="text-center flex flex-col">
+                <motion.div
+                  variants={childrenVariants}
+                  key={item.id}
+                  className="text-center flex flex-col"
+                >
                   <img src={item.src} alt={item.id} />
                   <p className="font-bold text-lg">{item.name}</p>
                   <p className="text-red-500">{item.price}</p>
@@ -85,10 +99,10 @@ export default function Shop() {
                   >
                     Add to Cart
                   </button>
-                </div>
+                </motion.div>
               );
             })}
-      </div>
+      </motion.div>
       <Outlet />
     </>
   );
@@ -99,4 +113,28 @@ export const shopSearchAction = async ({ request }) => {
   const search = formData.get("search");
   const data = await axiosJwtPost("search", search);
   return data;
+};
+
+const childrenVariants = {
+  start: {
+    opacity: 0,
+    x: -200,
+  },
+  end: {
+    opacity: 1,
+    x: 0,
+  },
+};
+
+const containerVariants = {
+  start: {
+    opacity: 1,
+  },
+  end: {
+    opacity: 1,
+    transition: {
+      duration: 1,
+      staggerChildren: 0.2,
+    },
+  },
 };

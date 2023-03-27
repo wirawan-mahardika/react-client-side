@@ -1,12 +1,16 @@
-import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } from 'react-router-dom'
-import Dashboard from './pages/Dashboard'
-import Beranda from './pages/Beranda'
-import Login from './pages/Login'
+import {
+  createBrowserRouter,
+  createRoutesFromElements,
+  Route,
+  RouterProvider,
+} from "react-router-dom";
+import Dashboard from "./pages/Dashboard";
+import Beranda from "./pages/Beranda";
+import Login from "./pages/Login";
 import Shop, { shopSearchAction } from "./components/Shop";
 import Detail from "./components/Detail";
 import Home from "./components/Home";
 import ProtectHome from "./components/ProtectHome";
-// import Errorpage from "./components/Errorpage";
 import Acer, { acerLoaderData } from "./pages/Acer";
 import Apple, { appleLoaderData } from "./pages/Apple";
 import Asus, { asusLoaderData } from "./pages/Asus";
@@ -18,12 +22,15 @@ import Laptop, { laptopLoader } from "./pages/Laptop";
 import Users from "./pages/Users";
 import Barang, { barangActionData } from "./pages/Barang";
 import Handphone, { handphoneLoader } from "./pages/Handphone";
+import Errorpage from "./components/Errorpage";
+import BarangMenu from "./components/BarangMenu";
+import BarangSetting, { BarangLoaderData } from "./components/BarangSetting";
 
 export default function App() {
   const router = createBrowserRouter(
     createRoutesFromElements([
-      // <Route path="/" element={<Dashboard />} errorElement={<Errorpage />}>
-      <Route path="/" element={<Dashboard />}>
+      <Route path="/" element={<Dashboard />} errorElement={<Errorpage />}>
+        {/* <Route path="/" element={<Dashboard />}> */}
         <Route path="/" element={<Beranda />}>
           <Route index element={<Home />} />
           <Route path="home" element={<ProtectHome />} />
@@ -54,7 +61,13 @@ export default function App() {
             <Route path="detail" element={<Detail />} />
           </Route>
           <Route path="users" element={<Users />} />
+          <Route path="barang-menu" element={<BarangMenu />} />
           <Route path="barang" element={<Barang />} action={barangActionData} />
+          <Route
+            path="setting-barang"
+            element={<BarangSetting />}
+            loader={BarangLoaderData}
+          />
         </Route>
         <Route path="login" element={<Login />} />
         <Route path="signup" element={<Signup />} />

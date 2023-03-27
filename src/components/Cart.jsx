@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { Outlet, useNavigate } from "react-router-dom";
 import { deleteItem } from "../actions/cartSlice";
+import { motion } from "framer-motion";
 
 export default function Cart() {
   const items = useSelector((state) => state.cart);
@@ -18,7 +19,12 @@ export default function Cart() {
   };
   return (
     <>
-      <div className="flex flex-col gap-y-3">
+      <motion.div
+        variants={containerVariants}
+        initial="start"
+        animate="end"
+        className="flex flex-col gap-y-3"
+      >
         <h2 className="font-bold text-3xl uppercase text-gray-800">
           Cart Items
         </h2>
@@ -26,7 +32,8 @@ export default function Cart() {
           items.map((item) => {
             const price = item.price * item.jumlah;
             return (
-              <div
+              <motion.div
+                variants={childrenVariants}
                 key={item.name}
                 className="flex justify-between p-5 bg-white "
               >
@@ -59,11 +66,14 @@ export default function Cart() {
                   <p className="font-bold text-lg">Price</p>
                   <p>{numberWithCommas(price)}</p>
                 </div>
-              </div>
+              </motion.div>
             );
           })}
 
-        <div className="bg-white flex justify-between w-full self-end p-4">
+        <motion.div
+          variants={childrenVariants}
+          className="bg-white flex justify-between w-full self-end p-4"
+        >
           <div>
             {items.length ? (
               <>
@@ -82,8 +92,8 @@ export default function Cart() {
           ) : (
             ""
           )}
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
       <Outlet />
     </>
   );
@@ -92,3 +102,30 @@ export default function Cart() {
 function numberWithCommas(x) {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 }
+
+const containerVariants = {
+  start: {
+    opacity: 1,
+  },
+  end: {
+    opacity: 1,
+    transition: {
+      type: "spring",
+      duration: 1,
+      staggerChildren: 0.3,
+      mass: 10,
+      stiffness: 10,
+    },
+  },
+};
+
+const childrenVariants = {
+  start: {
+    y: -500,
+    opacity: 0,
+  },
+  end: {
+    y: 0,
+    opacity: 1,
+  },
+};
